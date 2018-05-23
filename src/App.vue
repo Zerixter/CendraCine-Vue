@@ -31,4 +31,13 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 0px;
   padding-right: 0px;
 }
+form {
+    text-align: left;
+}
+div.forumlari {
+    padding: 25px;
+}
+textarea.sinopsis {
+    resize: none;
+}
 </style>

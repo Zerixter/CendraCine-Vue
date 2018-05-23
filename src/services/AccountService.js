@@ -8,7 +8,7 @@ export default class AccountService {
     login(login) {
         let url = urlService.LoginURL;
         axios.post(url, login).then((response) => {
-                localStorage.token = "";
+                localStorage.clear();
                 let token = response.data;
                 localStorage.token = token;
                 axios.create({
@@ -24,7 +24,7 @@ export default class AccountService {
     register(register) {
         let url = urlService.RegisterURL;
         axios.post(url, register).then((response) => {
-            localStorage.token = "";
+            localStorage.clear();
             let token = response.data;
             localStorage.token = token;
             axios.create({

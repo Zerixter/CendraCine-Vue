@@ -1,7 +1,9 @@
 import $ from 'jquery'
 import axios from 'axios'
 import URLS from '../../../../services/URLS'
+import MovieService from '../../../../services/MovieService'
 
+const movieService = new MovieService();
 const urlService = new URLS();
 
 export default {
@@ -25,6 +27,7 @@ export default {
             let url = urlService.MovieURL + '/' + this.id;
             axios.get(url)
             .then((response) => {
+                console.log(response);
                 this.movie = JSON.parse(JSON.stringify(response.data))
                 this.chosen_categories = this.movie.categories;
             })
@@ -63,5 +66,17 @@ export default {
                 this.chosen_categories.splice(position, 1);
             }
         },
+        submitForm() {
+            var movie = {
+                Id: this.id,
+                Name: this.movie.name,
+                Synopsis: this.movie.synopsis,
+                Trailer: this.movie.trailer,
+                RecommendedAge: this.movie.recommendedAge,
+                Cover: this.movie.cover,
+                Categories: this.chosen_categories
+            };
+            movieService.editMovie(movie);
+        }
     }
 }

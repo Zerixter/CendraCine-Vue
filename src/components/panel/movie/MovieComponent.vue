@@ -25,4 +25,3 @@
 </template>
 
 <script src="./MovieComponent.js"></script>
-<style src="./MovieComponent.css"></style>

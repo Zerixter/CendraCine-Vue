@@ -17,4 +17,3 @@
 </template>
 
 <script src="./CategoryComponent.js"></script>
-<style src="./CategoryComponent.css"></style>

@@ -55,5 +55,4 @@
     </div>
 </template>
 
-<style src="./MovieCreate.css"></style>
 <script src="./MovieCreate.js"></script>

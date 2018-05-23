@@ -23,4 +23,3 @@
 </template>
 
 <script src="./BillboardComponent.js"></script>
-<style src="./BillboardComponent.css"></style>

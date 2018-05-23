@@ -1,5 +1,10 @@
 import $ from 'jquery'
 import axios from 'axios'
+import URLS from '../../../services/URLS'
+import MovieService from '../../../services/MovieService'
+
+const urlService = new URLS();
+const movieService = new MovieService();
 
 export default {
     name: 'MovieComponent',
@@ -25,10 +30,14 @@ export default {
         deleteMovie(item) {
             if (confirm("Estás segur/a de esborrar aquesta película?"))
             {
-                alert("deleted");
+                movieService.deleteMovie(item.id);
+                var position = this.movies.indexOf(item);
+                if (position != -1)
+                {
+                    this.movies.splice(position, 1);
+                }
                 return;
             }
-            alert("not deleted")
         }
     }
 }

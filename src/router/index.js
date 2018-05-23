@@ -15,6 +15,11 @@ import BillboardCreate from '@/components/panel/billboard/create/BillboardCreate
 import BillboardEdit from '@/components/panel/billboard/edit/BillboardEdit.vue'
 // Categories
 import CategoryComponent from '@/components/panel/category/CategoryComponent.vue'
+import CategoryCreate from '@/components/panel/category/create/CategoryCreate.vue'
+import CategoryEdit from '@/components/panel/category/edit/CategoryEdit.vue'
+// Theaters
+import TheaterComponent from '@/components/panel/theater/TheaterComponent.vue'
+import TheaterCreate from '@/components/panel/theater/create/TheaterCreate.vue'
 
 Vue.use(Router)
 
@@ -29,6 +34,10 @@ export default new Router({
     { path: '/panel/billboards', name: 'BillboardComponent', component: BillboardComponent },
     { path: '/panel/billboards/create', name: 'BillboardCreate', component: BillboardCreate },
     { path: '/panel/billboards/edit/:id', name: 'BillboardEdit', component: BillboardEdit },
-    { path: '/panel/categories/', name: 'CategoryComponent', component: CategoryComponent },
+    { path: '/panel/categories', name: 'CategoryComponent', component: CategoryComponent },
+    { path: '/panel/categories/create', name: 'CategoryCreate', component: CategoryCreate },
+    { path: '/panel/categories/edit/:id', name: 'CategoryEdit', component: CategoryEdit },
+    { path: '/panel/theaters', name: 'TheaterComponent', component: TheaterComponent },
+    { path: '/panel/theaters/create', name: 'TheaterCreate', component: TheaterCreate },
   ]
 })

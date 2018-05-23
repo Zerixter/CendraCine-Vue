@@ -9,4 +9,6 @@ export default class URLS {
     CategoryURL = this.baseURL + 'category';
     // BILLBOARD
     BillboardURL = this.baseURL + 'billboard';
+    // THEATER
+    TheaterURL = this.baseURL + 'theater';
 }

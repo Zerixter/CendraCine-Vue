@@ -12,10 +12,18 @@ export default class MovieService {
             console.log(response);
         }).catch(error => { console.log(error); });
     }
-    editMovie() {
-
+    editMovie(movie) {
+        let url = urlService.MovieURL;
+        axios.put(url, movie)
+        .then((response) => {
+            console.log(response);
+        }).catch(error => {console.log(error)});
     }
-    deleteMovie() {
-
+    deleteMovie(id) {
+        let url = urlService.MovieURL + '/' + id;
+        axios.delete(url)
+        .then((response) => {
+            console.log(response);
+        }).catch(error => {console.log(error)});
     }
 }

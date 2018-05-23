@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-group">
                         <label>Edat recomenada</label>
-                        <input v-model="movie.age" type="number" class="form-control" placeholder="Introdueix la edat recomenda per la película"/>
+                        <input v-model="movie.recommendedAge" type="number" class="form-control" placeholder="Introdueix la edat recomenda per la película"/>
                     </div>
                     <div class="form-group">
                         <label>Portada</label>
@@ -55,5 +55,4 @@
     </div>
 </template>
 
-<style src="./MovieEdit.css"></style>
 <script src="./MovieEdit.js"></script>

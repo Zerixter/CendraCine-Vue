@@ -8,13 +8,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <router-link to="/panel/movies">Películes</router-link>
+        <router-link class="link-nav" to="/panel/movies">Películes</router-link>
       </li>
       <li class="nav-item active">
-        <router-link to="/panel/billboards">Cartelleres</router-link>
+        <router-link class="link-nav" to="/panel/billboards">Cartelleres</router-link>
       </li>
       <li class="nav-item-active">
-        <router-link to="/panel/categories">Categories</router-link>
+        <router-link class="link-nav" to="/panel/categories">Categories</router-link>
+      </li>
+      <li class="nav-item active">
+        <router-link class="link-nav" to="/panel/theaters">Sales</router-link>
       </li>
     </ul>
   </div>

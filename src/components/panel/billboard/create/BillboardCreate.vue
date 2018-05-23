@@ -26,4 +26,3 @@
 </template>
 
 <script src="./BillboardCreate.js"></script>
-<style src="./BillboardCreate.css"></style>
