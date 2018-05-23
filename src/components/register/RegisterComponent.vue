@@ -14,11 +14,7 @@
                     <label>Contrasenya</label>
                     <input v-model="password" class="form-control" type="password" placeholder="Introdueix la contrasenya"/>
                 </div>
-                <div class="form-group">
-                    <label>Repetir contrasenya</label>
-                    <input class="form-control" type="password" placeholder="Torna a introduir la contrasenya"/>
-                </div>
-                <button class="btn btn-primary">Registrar-se</button>
+                <button v-on:click="register()" class="btn btn-primary">Registrar-se</button>
             </div>
         </form>
     </div>

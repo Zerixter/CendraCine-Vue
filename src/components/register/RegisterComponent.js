@@ -1,5 +1,6 @@
-import $ from 'jquery'
-import axios from 'axios'
+import AccountService from '../../services/AccountService'
+
+const accountService = new AccountService();
 
 export default {
     name : 'RegisterComponent',
@@ -17,11 +18,7 @@ export default {
                 Email: this.email,
                 Password: this.password
             };
-            let url = 'http://localhost:5000/api/account/register';
-            axios.post(url, register).then((response) => {
-                let token = response.data;
-                localStorage.token = token;
-            }).catch(error => { console.log(error); });
+            accountService.register(register);
         }
     }
 }

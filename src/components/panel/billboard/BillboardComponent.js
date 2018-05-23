@@ -23,7 +23,7 @@ export default {
             }).catch(error => { console.log(error); });
         },
         editBillboard(item) {
-            this.$router.push('/panel/movies/edit/' + item.id);
+            this.$router.push('/panel/billboards/edit/' + item.id);
         },
         deleteBillboard(item) {
             if (confirm("Estás segur/a de esborrar aquesta película?"))

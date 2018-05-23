@@ -26,7 +26,9 @@ export default {
             var theater = {
                 Number: this.number,
                 Capacity: this.capacity,
-                Seats: Seats
+                Seats: Seats,
+                RowNumbers: this.rows,
+                SeatNumbers: this.seats
             };
             theaterService.createTheater(theater);
         },

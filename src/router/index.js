@@ -20,6 +20,7 @@ import CategoryEdit from '@/components/panel/category/edit/CategoryEdit.vue'
 // Theaters
 import TheaterComponent from '@/components/panel/theater/TheaterComponent.vue'
 import TheaterCreate from '@/components/panel/theater/create/TheaterCreate.vue'
+import TheaterEdit from '@/components/panel/theater/edit/TheaterEdit.vue'
 
 Vue.use(Router)
 
@@ -39,5 +40,6 @@ export default new Router({
     { path: '/panel/categories/edit/:id', name: 'CategoryEdit', component: CategoryEdit },
     { path: '/panel/theaters', name: 'TheaterComponent', component: TheaterComponent },
     { path: '/panel/theaters/create', name: 'TheaterCreate', component: TheaterCreate },
+    { path: '/panel/theaters/edit/:id', name: 'TheaterEdit', component: TheaterEdit },
   ]
 })

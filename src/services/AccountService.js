@@ -18,6 +18,7 @@ export default class AccountService {
                         'Authorization': 'Bearer ' + token
                     }
                 });
+                //this.$emit("authenticated", true);
                 console.log(token);
         }).catch(error => { console.log(error); });
     }
@@ -34,6 +35,7 @@ export default class AccountService {
                     'Authorization': 'Bearer ' + token
                 }
             });
+            //this.$emit("authenticated", true);
             console.log(token);
         }).catch(error => { console.log(error); });
     }

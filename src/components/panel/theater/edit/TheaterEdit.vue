@@ -13,11 +13,11 @@
                     </div>
                     <div class="form-group">
                         <label>Numero de files</label>
-                        <input v-model="theater.rows" type="number" class="form-control" placeholder="Introdueix el numero de files"/>
+                        <input v-model="theater.rowNumbers" type="number" class="form-control" placeholder="Introdueix el numero de files"/>
                     </div>
                     <div class="form-group">
                         <label>Numero de butaques per fila</label>
-                        <input v-model="theater.seats" type="number" class="form-control" placeholder="Introdueix el numero de butaques per fila"/>
+                        <input v-model="theater.seatNumbers" type="number" class="form-control" placeholder="Introdueix el numero de butaques per fila"/>
                     </div>
                     <div class="form-group">
                         <button v-on:click="submitForm()" class="btn btn-primary">Modifcar sala de cine</button>
@@ -27,3 +27,5 @@
         </div>
     </div>
 </template>
+
+<script src="./TheaterEdit.js"></script>

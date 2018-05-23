@@ -19,4 +19,11 @@ export default class TheaterService {
             console.log(response);
         }).catch(error => {console.log(error)});
     }
+    deleteTheater(id) {
+        let url = urlService.TheaterURL + '/' + id;
+        axios.delete(url)
+        .then((response) => {
+            console.log(response);
+        }).catch(error => {console.log(error)});
+    }
 }
