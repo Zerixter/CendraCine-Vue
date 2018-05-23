@@ -1,0 +1,9 @@
+form {
+    text-align: left;
+}
+div.forumlari {
+    padding: 25px;
+}
+textarea.sinopsis {
+    resize: none;
+}
