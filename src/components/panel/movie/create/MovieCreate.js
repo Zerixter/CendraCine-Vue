@@ -1,6 +1,9 @@
 import $ from 'jquery'
 import axios from 'axios'
 import MovieService from '../../../../services/MovieService'
+import URLS from '../../../../services/URLS'
+
+const urlService = new URLS();
 
 export default {
     name: 'MovieCreate',
@@ -20,10 +23,12 @@ export default {
     },
     methods: {
         getCategories() {
-            let url = 'http://localhost:5000/api/category';
+            console.log("token")
+            console.log(localStorage.token)
+            let url = urlService.CategoryURL;
             axios.get(url).then((response) => {
+                console.log(response)
                 this.categories = JSON.parse(JSON.stringify(response.data));
-                //console.log(response);
             }).catch(error => { console.log(error); });
             console.log(this.categories)
         },

@@ -19,6 +19,28 @@
                         <button v-on:click="submitForm()" class="btn btn-primary">Editar cartellera</button>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Películes que estarán en la cartellera</label>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <select id="select-movie" class="form-control">
+                                    <option v-for="item in movies" :key="item.id">{{ item.name }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button v-on:click="addMovie()" class="btn btn-primary">Afegir película</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ul>
+                            <li v-for="item in chosen_movies" :key="item.id">
+                                {{ item.movie.name }} <button v-on:click="removeMovie(item)" class="btn btn-warning">Eliminar</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

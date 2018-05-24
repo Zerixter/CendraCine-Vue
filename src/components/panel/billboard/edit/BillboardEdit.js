@@ -12,10 +12,14 @@ export default {
         return {
             id: "",
             billboard: {},
+            movies: [],
+            chosen_movies: [],
         }
     },
     mounted() {
         this.getBillboard();
+        this.getMovies();
+        this.getChosenMovies();
     },
     methods: {
         getBillboard() {
@@ -23,7 +27,7 @@ export default {
             let url = urlService.BillboardURL + '/' + this.id;
             axios.get(url)
             .then((response) => {
-                console.log(response);
+                //console.log(response);
                 this.billboard = JSON.parse(JSON.stringify(response.data));
                 var bd = new Date(this.billboard.beginDate);
                 bd.setDate(bd.getDate() + 1);
@@ -33,6 +37,21 @@ export default {
                 this.billboard.endDate = ed.toISOString().split('T')[0];
             })
             .catch(error => { console.log(error); });
+        },
+        getChosenMovies() {
+            let url = urlService.BMRURL + '/billboard/' + this.id;
+            axios.get(url)
+            .then((response) => { 
+                console.log(response)
+                this.chosen_movies = JSON.parse(JSON.stringify(response.data));
+            }).catch(error => {console.log(error)});
+        },
+        getMovies() {
+            let url = urlService.MovieURL;
+            axios.get(url)
+            .then((response) => {
+                this.movies = JSON.parse(JSON.stringify(response.data));
+            }).catch(error => {console.log(error)});
         },
         submitForm() {
             var billboard = {

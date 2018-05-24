@@ -11,4 +11,6 @@ export default class URLS {
     BillboardURL = this.baseURL + 'billboard';
     // THEATER
     TheaterURL = this.baseURL + 'theater';
+    // BILLBOARD MOVIE REGISTER
+    BMRURL = this.baseURL + 'billboardmovieregister';
 }

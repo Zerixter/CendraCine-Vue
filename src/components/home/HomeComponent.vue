@@ -1,8 +1,8 @@
 <template>
   <div class="content">
     <swiper :options="swiperOption" ref="mySwiper">
-      <swiper-slide v-for="item in movies" :key="item.id">
-        <img :src="item.cover" />
+      <swiper-slide v-for="item in bbmr" :key="item.id">
+        <img :src="item.movie.cover" />
       </swiper-slide>
     </swiper>
   </div>

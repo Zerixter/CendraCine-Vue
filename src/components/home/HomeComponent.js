@@ -1,6 +1,9 @@
 import $ from 'jquery'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import axios from 'axios'
+import URLS from '../../services/URLS'
+
+const urlService = new URLS();
 
 export default {
     name : 'HomeComponent',
@@ -13,7 +16,7 @@ export default {
     },
     data() {
         return {
-            movies: [],
+            bbmr: [],
             swiperOption: {
                 slidesPerView: 7,
                 autoplay: {
@@ -25,10 +28,9 @@ export default {
     },
     methods: {
         getMovies() {
-            let url = 'http://localhost:5000/api/movie';
+            let url = urlService.BillboardURL + '/actual';
             axios.get(url).then((response) => {
-                this.movies = JSON.parse(JSON.stringify(response.data));
-                console.log(response);
+                this.bbmr = JSON.parse(JSON.stringify(response.data.billboardMovieRegister));
             }).catch(error => { console.log(error); });
         },
     },

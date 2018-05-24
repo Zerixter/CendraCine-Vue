@@ -40,4 +40,7 @@ div.forumlari {
 textarea.sinopsis {
     resize: none;
 }
+.center {
+  text-align: center;
+}
 </style>

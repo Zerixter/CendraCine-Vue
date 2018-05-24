@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <ul>
                             <li v-for="item in chosen_categories" :key="item.id">
-                                {{ item.name }} <button v-on:click="removeCategory(item)" class="btn btn-warning">Eliminar</button>
+                                <button v-on:click="removeCategory(item)" class="btn btn-warning">Eliminar</button> {{ item.name }}
                             </li>
                         </ul>
                     </div>

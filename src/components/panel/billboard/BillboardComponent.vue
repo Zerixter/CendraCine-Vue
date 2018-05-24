@@ -14,7 +14,7 @@
                 <td>{{ item.name }}</td>
                 <td>{{ getDate(item.beginDate) }}</td>
                 <td>{{ getDate(item.endDate) }}</td>
-                <td>{{ getDate(item.dateCreated) }}</td>
+                <td>{{ new Date(item.dateCreated).toISOString().split('T')[0] }}</td>
                 <td><button v-on:click="editBillboard(item)" class="btn btn-primary">Editar</button></td>
                 <td><button v-on:click="deleteBillboard(item)" class="btn btn-primary">Esborrar</button></td>
             </tr>
