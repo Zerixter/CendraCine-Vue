@@ -20,7 +20,7 @@ export default class BillboardService {
         }).catch(error => {console.log(error)});
     }
     removeBillboard(id) {
-        let url = urlService.CreateBillboardURL;
+        let url = urlService.CreateBillboardURL + '/' + id;
         axios.delete(url)
         .then((response) => {
             console.log(response);

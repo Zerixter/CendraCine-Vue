@@ -12,4 +12,18 @@ export default class CategoryService {
             console.log(response);
         }).catch(error => {console.log(error)});
     }
+    editCategory(category) {
+        let url = urlService.CategoryURL;
+        axios.put(url, category)
+        .then((response) => {
+            console.log(response);
+        }).catch(error => {console.log(error)});
+    }
+    deleteCategory(id) {
+        let url = urlService.CategoryURL + '/' + id;
+        axios.delete(url)
+        .then((response) => {
+            console.log(response);
+        }).catch(error => {console.log(error)});
+    }
 }

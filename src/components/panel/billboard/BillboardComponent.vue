@@ -12,9 +12,9 @@
             </tr>
             <tr v-for="item in billboards" :key="item.id">
                 <td>{{ item.name }}</td>
-                <td>{{ item.beginDate }}</td>
-                <td>{{ item.endDate }}</td>
-                <td>{{ item.dateCreated }}</td>
+                <td>{{ getDate(item.beginDate) }}</td>
+                <td>{{ getDate(item.endDate) }}</td>
+                <td>{{ getDate(item.dateCreated) }}</td>
                 <td><button v-on:click="editBillboard(item)" class="btn btn-primary">Editar</button></td>
                 <td><button v-on:click="deleteBillboard(item)" class="btn btn-primary">Esborrar</button></td>
             </tr>

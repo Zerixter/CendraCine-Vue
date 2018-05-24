@@ -1,8 +1,10 @@
 import $ from 'jquery'
 import axios from 'axios'
 import URLS from '../../../services/URLS'
+import BillboardService from '../../../services/BillboardService'
 
 const urlService = new URLS();
+const billboardService = new BillboardService();
 
 export default {
     name: 'BillboardComponent',
@@ -28,9 +30,20 @@ export default {
         deleteBillboard(item) {
             if (confirm("Estás segur/a de esborrar aquesta película?"))
             {
-                alert("deleted");
+                billboardService.deleteBillboard(item.id);
+                var position = this.billboards.indexOf(item);
+                if (position != -1)
+                {
+                    this.billboards.splice(position, 1);
+                }
                 return;
             }
+        },
+        getDate(date) {
+            var d = new Date(date);
+            d.setDate(d.getDate() + 1);
+            d = d.toISOString().split('T')[0];
+            return d;
         }
     }
 }
