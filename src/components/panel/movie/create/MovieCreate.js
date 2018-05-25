@@ -16,6 +16,7 @@ export default {
             age: 0,
             cover: "",
             synopsis: "",
+            selected_file: null,
         }
     },
     mounted() {
@@ -58,6 +59,26 @@ export default {
             {
                 this.chosen_categories.splice(position, 1);
             }
+        },
+        onFileChanged(event) {
+            let file = event.target.files[0];
+
+            this.selected_file = new FormData();
+            this.selected_file.append("file", file, file.name);
+
+            let url = 'http://localhost:5000/api/upload';
+            axios.post(url, this.selected_file, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(resp => {
+                console.log("resp")
+                console.log(resp)
+            }).catch(error => {
+                console.log("error critico")
+                console.log(error)
+            });
         },
         submitForm() {
             var movie = {

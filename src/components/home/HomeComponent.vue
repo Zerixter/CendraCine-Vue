@@ -2,7 +2,7 @@
   <div class="content">
     <swiper :options="swiperOption" ref="mySwiper">
       <swiper-slide v-for="item in bbmr" :key="item.id">
-        <img :src="item.movie.cover" />
+        <img src="../../assets/thorragnarok.jpg" />
       </swiper-slide>
     </swiper>
   </div>

@@ -25,6 +25,7 @@ export default {
             let url = urlService.MovieURL;
             axios.get(url)
             .then((response) => {
+                console.log(response)
                 this.movies = JSON.parse(JSON.stringify(response.data));
             }).catch(error => {console.log(error)});
         },
@@ -46,7 +47,11 @@ export default {
                 alert("Error");
                 return;
             }
-            this.chosen_movies.push(JSON.parse(JSON.stringify(movie[0])));
+            var Movie = {
+                id: movie[0].id,
+                name: movie[0].name
+            };
+            this.chosen_movies.push(Movie);
         },
         removeMovie(item) {
             var position = this.chosen_movies.indexOf(item);
@@ -62,6 +67,7 @@ export default {
                 EndDate: this.endDate,
                 Movies: this.chosen_movies
             };
+            console.log(billboard);
             billboardService.createBillboard(billboard);
         },
     }

@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <label>Portada</label>
-                        <input v-model="cover" class="form-control" placeholder="Afageix una portada per la película"/>
+                        <input type="file" @change="onFileChanged" class="form-control" placeholder="Afageix una portada per la película"/>
                     </div>
                     <div class="form-group">
                         <label>Sinopsis</label>

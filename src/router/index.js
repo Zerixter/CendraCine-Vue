@@ -22,13 +22,19 @@ import TheaterComponent from '@/components/panel/theater/TheaterComponent.vue'
 import TheaterCreate from '@/components/panel/theater/create/TheaterCreate.vue'
 import TheaterEdit from '@/components/panel/theater/edit/TheaterEdit.vue'
 
+import Billboard from '../components/billboard/Billboard.vue'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [
     { path: '/', name: 'HomeComponent', component: HomeComponent },
+    // ACOUNT
     { path: '/login', name: 'LoginComponent', component: LoginComponent },
     { path: '/register', name: 'RegisterComponent', component: RegisterComponent },
+    // CLIENT
+    { path: '/cartellera', name: 'Billboard', component: Billboard },
+    // PANEL
     { path: '/panel/movies', name: 'MovieComponent', component: MovieComponent },
     { path: '/panel/movies/create', name: 'MovieCreate', component: MovieCreate },
     { path: '/panel/movies/edit/:id', name: 'MovieEdit', component: MovieEdit },
