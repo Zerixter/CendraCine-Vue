@@ -21,6 +21,10 @@ import CategoryEdit from '@/components/panel/category/edit/CategoryEdit.vue'
 import TheaterComponent from '@/components/panel/theater/TheaterComponent.vue'
 import TheaterCreate from '@/components/panel/theater/create/TheaterCreate.vue'
 import TheaterEdit from '@/components/panel/theater/edit/TheaterEdit.vue'
+// Projections
+import ProjectionComponent from '@/components/panel/projection/ProjectionComponent.vue'
+import ProjectionCreate from '@/components/panel/projection/create/ProjectionCreate.vue'
+import ProjectionEdit from '@/components/panel/projection/edit/ProjectionEdit.vue'
 
 import Billboard from '../components/billboard/Billboard.vue'
 
@@ -47,5 +51,8 @@ export default new Router({
     { path: '/panel/theaters', name: 'TheaterComponent', component: TheaterComponent },
     { path: '/panel/theaters/create', name: 'TheaterCreate', component: TheaterCreate },
     { path: '/panel/theaters/edit/:id', name: 'TheaterEdit', component: TheaterEdit },
+    { path: '/panel/projections', name: 'ProjectionComponent', component: ProjectionComponent },
+    { path: '/panel/projections/create', name: 'ProjectionCreate', component: ProjectionCreate },
+    { path: '/panel/projections/edit/:id', name: 'ProjectionEdit', component: ProjectionEdit },
   ]
 })
