@@ -9,6 +9,9 @@
                 <div class="col-md-6">
                     <h3>{{ item.movie.name }}</h3>
                     <p>{{ item.movie.synopsis }}</p>
+                    <span>
+                        <button @click="reservar(item)" class="btn btn-primary">Reservar ticket</button>
+                    </span>
                 </div>
             </div>
         </div>
@@ -18,6 +21,10 @@
 <style>
 img {
     width: 100%;
+}
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
 }
 </style>
 <script src="./Billboard.js"></script>

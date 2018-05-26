@@ -14,5 +14,5 @@ export default class URLS {
     // BILLBOARD MOVIE REGISTER
     BMRURL = this.baseURL + 'billboardmovieregister';
     // PROJECTION
-    ProjectionuRL = this.baseURL + 'projection';
+    ProjectionURL = this.baseURL + 'projection';
 }

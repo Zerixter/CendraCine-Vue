@@ -27,6 +27,9 @@ import ProjectionCreate from '@/components/panel/projection/create/ProjectionCre
 import ProjectionEdit from '@/components/panel/projection/edit/ProjectionEdit.vue'
 
 import Billboard from '../components/billboard/Billboard.vue'
+import Reservation from '../components/reservation/Reservation.vue'
+import Payment from '../components/payment/Payment.vue'
+import Seats from '../components/seats/Seats.vue'
 
 Vue.use(Router)
 
@@ -38,6 +41,9 @@ export default new Router({
     { path: '/register', name: 'RegisterComponent', component: RegisterComponent },
     // CLIENT
     { path: '/cartellera', name: 'Billboard', component: Billboard },
+    { path: '/reserva/:id', name: 'Reservation', component: Reservation },
+    { path: '/pagament', name: 'Payment', component: Payment },
+    { path: '/seients', name: 'Seats', component: Seats },
     // PANEL
     { path: '/panel/movies', name: 'MovieComponent', component: MovieComponent },
     { path: '/panel/movies/create', name: 'MovieCreate', component: MovieCreate },

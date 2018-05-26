@@ -18,8 +18,12 @@ export default {
         getMovies() {
             let url = urlService.BillboardURL + '/actual';
             axios.get(url).then((response) => {
+                console.log(response.data);
                 this.bbmr = JSON.parse(JSON.stringify(response.data.billboardMovieRegister));
             }).catch(error => { console.log(error); });
         },
+        reservar(item) {
+            this.$router.push('/reserva/' + item.movie.id);
+        }
     }
 }

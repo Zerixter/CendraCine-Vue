@@ -7,17 +7,20 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link class="link-nav" to="/panel/movies">Películes</router-link>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link class="link-nav" to="/panel/billboards">Cartelleres</router-link>
           </li>
-          <li class="nav-item-active">
+          <li class="nav-item">
             <router-link class="link-nav" to="/panel/categories">Categories</router-link>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link class="link-nav" to="/panel/theaters">Sales</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="link-nav" to="/panel/projections">Projections</router-link>
           </li>
         </ul>
       </div>
@@ -25,4 +28,3 @@
 </template>
 
 <script src="./NavMenu.js"></script>
-<style src="./NavMenu.css"></style>
