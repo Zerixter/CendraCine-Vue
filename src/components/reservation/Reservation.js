@@ -59,7 +59,7 @@ export default {
         },
         makeReservation() {
             if (this.projection == "Tria una data de projecció per realitzar la reserva" || this.projection == null) return;
-            let id = this.projection.id;
+            let id = this.projection.value;
             this.$router.push('/seients/' + id);
         }
     }

@@ -15,4 +15,6 @@ export default class URLS {
     BMRURL = this.baseURL + 'billboardmovieregister';
     // PROJECTION
     ProjectionURL = this.baseURL + 'projection';
+    // RESERVATION
+    ReservationURL = this.baseURL + 'reservation';
 }

@@ -30,6 +30,7 @@ import Billboard from '../components/billboard/Billboard.vue'
 import Reservation from '../components/reservation/Reservation.vue'
 import Payment from '../components/payment/Payment.vue'
 import Seats from '../components/seats/Seats.vue'
+import Reservations from '../components/reservations/Reservations.vue'
 
 Vue.use(Router)
 
@@ -43,7 +44,8 @@ export default new Router({
     { path: '/cartellera', name: 'Billboard', component: Billboard },
     { path: '/reserva/:id', name: 'Reservation', component: Reservation },
     { path: '/pagament', name: 'Payment', component: Payment },
-    { path: '/seients', name: 'Seats', component: Seats },
+    { path: '/seients/:id', name: 'Seats', component: Seats },
+    { path: '/reserves', name: 'Reservations', component: Reservations },
     // PANEL
     { path: '/panel/movies', name: 'MovieComponent', component: MovieComponent },
     { path: '/panel/movies/create', name: 'MovieCreate', component: MovieCreate },

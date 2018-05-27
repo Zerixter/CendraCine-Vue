@@ -1,7 +1,64 @@
 <template>
     <div class="content">
+        <div>
+            <h1>Tria un seient</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-9 table-responsive">
+                <table class="table">
+                    <tr v-for="(row, index) in rows" :key="`row-${index}`">
+                        <td>Fila {{ index + 1 }}</td>
+                        <td v-for="seat in row" :key="seat.id">
+                            <div v-if="seat.occuped">
+                                <img class="butaca" src="http://localhost:5000/assets/butaca_ocupada.png" alt="butaca">
+                            </div>
+                            <div v-else-if="seat.selected">
+                                <img class="butaca" src="http://localhost:5000/assets/butaca_seleccionada.png" alt="butaca">
+                            </div>
+                            <div v-else>
+                                <img v-on:click="setSeat(seat)" class="butaca" src="http://localhost:5000/assets/butaca.png" alt="butaca">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-3">
+                <div class="card" v-if="seat_selected">
+                    <h5 class="card-header">Dades de la reserva</h5>
+                    <div class="card-body">
+                        <p>Numero de la fila: {{ seat.rowNumber }}</p>
+                        <hr>
+                        <p>Numero del seient: {{ seat.seatNumber }}</p>
+                        <hr>
+                        <p>Preu del ticket: {{ price }} €</p>
+                        <hr>
+                        <PayPal
+                        v-on:payment-authorized="paymentAuthorized"
+                        v-on:payment-completed="paymentCompleted"
+                        v-on:payment-cancelled="paymentCancelled"
+                        :amount="price"
+                        currency="EUR" 
+                        :client="paypal"
+                        env="sandbox">
+                        </PayPal>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </div>
 </template>
 
 <script src="./Seats.js"></script>
+<style>
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.butaca {
+    width: 100%;
+}
+.butaca:hover {
+    cursor: pointer;
+}
+</style>

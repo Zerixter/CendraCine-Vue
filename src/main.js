@@ -10,11 +10,12 @@ import 'swiper/dist/css/swiper.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'vue-datetime/dist/vue-datetime.css'
 import moment from 'moment'
-
+import Notifications from 'vue-notification'
 
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper);
 Vue.use(Datetime);
+Vue.use(Notifications);
 Vue.component('v-select', vSelect);
 Vue.filter('formatDate', function(value) {
   if (value) {
