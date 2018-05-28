@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "cendracine-vue",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Projecte en Vue per servir de Client Web a la API CendraCine",
   "author": "hsaddouki@gmail.com <hsaddouki@gmail.com>",
   "private": true,
   "scripts": {
