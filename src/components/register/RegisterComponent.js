@@ -18,7 +18,12 @@ export default {
                 Email: this.email,
                 Password: this.password
             };
-            accountService.register(register);
+            accountService.register(register).
+            then((response) => {
+                localStorage.clear();
+                localStorage.setItem('token', response.data.token);
+                this.$router.push('/');
+            }).catch(error => { console.log(error); });;
         }
     }
 }

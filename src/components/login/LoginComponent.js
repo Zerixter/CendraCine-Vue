@@ -17,7 +17,13 @@ export default {
                 Password: this.password
             };
             const accountService = new AccountService();
-            accountService.login(login);
+            accountService.login(login).then((response) => {
+                localStorage.clear();
+                console.log(response.data)
+                localStorage.setItem('token', response.data.token);
+                if (response.data.role == "Admin") this.$router.push('/panel');
+                else this.$router.push('/');
+            }).catch(error => { console.log(error); });;
         }
     }
 }

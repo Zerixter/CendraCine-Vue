@@ -31,6 +31,7 @@ import Reservation from '../components/reservation/Reservation.vue'
 import Payment from '../components/payment/Payment.vue'
 import Seats from '../components/seats/Seats.vue'
 import Reservations from '../components/reservations/Reservations.vue'
+import Panel from '../components/panel/Panel.vue'
 
 Vue.use(Router)
 
@@ -47,6 +48,7 @@ export default new Router({
     { path: '/seients/:id', name: 'Seats', component: Seats },
     { path: '/reserves', name: 'Reservations', component: Reservations },
     // PANEL
+    { path: '/panel', name: 'Panel', component: Panel },
     { path: '/panel/movies', name: 'MovieComponent', component: MovieComponent },
     { path: '/panel/movies/create', name: 'MovieCreate', component: MovieCreate },
     { path: '/panel/movies/edit/:id', name: 'MovieEdit', component: MovieEdit },

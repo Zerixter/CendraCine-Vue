@@ -2,12 +2,23 @@ import $ from 'jquery'
 import axios from 'axios'
 import URLS from '../../../services/URLS'
 import MovieService from '../../../services/MovieService'
+import AccountService from '../../../services/AccountService'
 
+const accountService = new AccountService();
 const urlService = new URLS();
 const movieService = new MovieService();
 
 export default {
     name: 'MovieComponent',
+    beforeCreate() {
+        accountService.getRoleAdmin()
+        .then(res => {
+            if (res.data == 'Admin') return;
+            else this.$router.push('/');
+        }).catch(err => {
+            this.$router.push('/login');
+        });
+    },
     data() {
         return {
             movies: [],

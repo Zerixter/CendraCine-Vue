@@ -8,19 +8,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <router-link class="link-nav" to="/panel/movies">Inici</router-link>
+                <router-link class="link-nav" to="/">Inici</router-link>
             </li>
             <li class="nav-item active">
-                <router-link class="link-nav" to="/panel/billboards">Cartellera</router-link>
+                <router-link class="link-nav" to="/cartellera">Cartellera</router-link>
             </li>
-            <li class="nav-item-active">
-                <router-link class="link-nav" to="/panel/categories">Reservar</router-link>
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0" v-if="isLogged">
+            <li class="nav-item active">
+                <router-link class="link-nav" to="/reserves">Reserves</router-link>
             </li>
             <li class="nav-item active">
-                <router-link class="link-nav" to="/panel/theaters">Informació</router-link>
-            </li>
-            <li class="nav-item active">
-                <router-link class="link-nav" to="/panel/">Contacte</router-link>
+                <span @click="closeSession" class="link-nav close-session">Tancar sessió</span>
             </li>
         </ul>
         </div>
@@ -28,3 +27,9 @@
 </template>
 
 <script src="./PrimaryNavMenu.js"></script>
+
+<style>
+.close-session {
+    cursor: pointer;
+}
+</style>

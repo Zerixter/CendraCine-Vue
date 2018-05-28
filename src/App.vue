@@ -1,6 +1,11 @@
 <template>
   <div id="app" class="container-fluid">
-    <nav-menu></nav-menu>
+    <div v-if="isAdmin">
+        <nav-menu></nav-menu>
+    </div>
+    <div v-else>
+        <primary-menu></primary-menu>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -8,11 +13,28 @@
 <script>
 import PrimaryNavMenu from '@/components/primary-nav-menu/PrimaryNavMenu.vue'
 import NavMenu from '@/components/panel/navmenu/NavMenu.vue'
+import AccountService from '@/services/AccountService'
+
+const accountService = new AccountService();
+
 export default {
   name: 'App',
   components: { 
     'nav-menu': NavMenu,
     'primary-menu': PrimaryNavMenu
+  },
+  data() {
+      return {
+          isAdmin: false,
+      }
+  },
+  mounted() {
+      accountService.getRoleAdmin()
+      .then(res => {
+          console.log(res)
+          if (res.data == 'Admin') this.isAdmin = true;
+      })
+      .catch(err => {});
   }
 }
 </script>

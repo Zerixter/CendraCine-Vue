@@ -2,12 +2,23 @@ import $ from 'jquery'
 import axios from 'axios'
 import URLS from '../../../services/URLS'
 import TheaterService from '../../../services/TheaterService'
+import AccountService from '../../../services/AccountService'
 
+const accountService = new AccountService();
 const urlService = new URLS();
 const theaterService = new TheaterService();
 
 export default {
     name: 'TheaterComponent',
+    beforeCreate() {
+        accountService.getRoleAdmin()
+        .then(res => {
+            if (res.data == 'Admin') return;
+            else this.$router.push('/');
+        }).catch(err => {
+            this.$router.push('/login');
+        });
+    },
     data() {
         return {
             theaters: [],

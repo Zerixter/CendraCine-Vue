@@ -1,9 +1,20 @@
 import TheaterService from '../../../../services/TheaterService'
+import AccountService from '../../../../services/AccountService'
 
 const theaterService = new TheaterService();
+const accountService = new AccountService();
 
 export default {
     name: 'TheaterCreate',
+    beforeCreate() {
+        accountService.getRoleAdmin()
+        .then(res => {
+            if (res.data == 'Admin') return;
+            else this.$router.push('/');
+        }).catch(err => {
+            this.$router.push('/login');
+        });
+    },
     data() {
         return {
             number: 0,

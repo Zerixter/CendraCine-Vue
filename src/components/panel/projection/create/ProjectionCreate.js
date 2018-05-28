@@ -3,13 +3,24 @@ import axios from 'axios'
 import URLS from '../../../../services/URLS'
 import { Datetime } from 'vue-datetime';
 import { Settings } from 'luxon'
+import AccountService from '../../../../services/AccountService'
 
 Settings.defaultLocale = 'es'
 
 const urlService = new URLS();
+const accountService = new AccountService();
 
 export default {
     name: 'ProjectionCreate',
+    beforeCreate() {
+        accountService.getRoleAdmin()
+        .then(res => {
+            if (res.data == 'Admin') return;
+            else this.$router.push('/');
+        }).catch(err => {
+            this.$router.push('/login');
+        });
+    },
     components: { 
         datetime: Datetime,
     },

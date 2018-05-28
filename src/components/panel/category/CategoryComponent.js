@@ -2,12 +2,23 @@ import $ from 'jquery'
 import axios from 'axios'
 import URLS from '../../../services/URLS'
 import CategoryService from '../../../services/CategoryService'
+import AccountService from '../../../services/AccountService'
 
+const accountService = new AccountService();
 const urlService = new URLS();
 const categoryService = new CategoryService();
 
 export default {
     name: 'CategoryComponent',
+    beforeCreate() {
+        accountService.getRoleAdmin()
+        .then(res => {
+            if (res.data == 'Admin') return;
+            else this.$router.push('/');
+        }).catch(err => {
+            this.$router.push('/login');
+        });
+    },
     data() {
         return {
             categories: [],

@@ -1,7 +1,9 @@
 import $ from 'jquery'
 import axios from 'axios'
 import URLS from '../../services/URLS'
+import AccountService from '../../services/AccountService'
 
+const accountService = new AccountService();
 const urlService = new URLS();
 
 export default {
@@ -17,6 +19,7 @@ export default {
     methods: {
         getReservations() {
             let url = urlService.ReservationURL;
+            accountService.createHeaders();
             axios.get(url)
             .then(res => {
                 console.log(res);

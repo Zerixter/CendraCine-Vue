@@ -1,4 +1,5 @@
 
+
 export default {
-    name: 'ProjectionEdit'
+    name: 'ProjectionEdit',
 }
