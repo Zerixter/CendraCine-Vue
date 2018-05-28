@@ -1,6 +1,6 @@
-# test
+# CendraCine Vue
 
-> A Vue.js project
+> Projecte en Vue per servir de Client Web a la API CendraCine
 
 ## Build Setup
 
