@@ -20,6 +20,7 @@ export default {
             };
             accountService.register(register).
             then((response) => {
+                console.log(response)
                 localStorage.clear();
                 localStorage.setItem('token', response.data.token);
                 this.$router.push('/');

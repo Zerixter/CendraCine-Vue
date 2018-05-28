@@ -76,7 +76,8 @@ export default {
 
             this.selected_file = new FormData();
             this.selected_file.append("file", file, file.name);
-
+        },
+        submitForm() {
             let url = 'http://localhost:5000/api/upload';
             axios.post(url, this.selected_file, {
                 headers: {
@@ -84,24 +85,24 @@ export default {
                 }
             })
             .then(resp => {
-                console.log("resp")
                 console.log(resp)
+                this.createMovie(resp.data);
             }).catch(error => {
                 console.log("error critico")
                 console.log(error)
             });
         },
-        submitForm() {
+        createMovie(cover){
             var movie = {
                 Name: this.name,
                 Trailer: this.trailer,
                 RecommendedAge: this.age,
-                Cover: this.cover,
+                Cover: cover,
                 Synopsis: this.synopsis,
                 Categories: this.chosen_categories
             };
             const movieService = new MovieService();
             movieService.createMovie(movie);
-        },
+        }
     }
 }

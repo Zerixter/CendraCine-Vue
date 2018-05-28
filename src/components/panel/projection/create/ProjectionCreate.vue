@@ -2,27 +2,25 @@
     <div class="content">
         <h1>Formulari per afegir una projecció</h1>
         <div class="forumlari">
-            <form class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Data de projecció</label>
-                        <div class="row">
-                            <datetime type="datetime" v-model="date"></datetime>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Película</label>
-                        <v-select v-model="movie" :options="movies_select"></v-select>
-                    </div>
-                    <div class="form-group">
-                        <label>Sala de cine</label>
-                        <v-select v-model="theater" :options="theaters_select"></v-select>
-                    </div>
-                    <div class="form-group">
-                        <button v-on:click="submitForm()" class="btn btn-primary">Afegir projecció</button>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Data de projecció</label>
+                    <div class="row">
+                        <datetime type="datetime" v-model="date"></datetime>
                     </div>
                 </div>
-            </form>
+                <div class="form-group">
+                    <label>Película</label>
+                    <v-select v-model="movie" :options="movies_select"></v-select>
+                </div>
+                <div class="form-group">
+                    <label>Sala de cine</label>
+                    <v-select v-model="theater" :options="theaters_select"></v-select>
+                </div>
+                <div class="form-group">
+                    <button v-on:click="submitForm()" class="btn btn-primary">Afegir projecció</button>
+                </div>
+            </div>
         </div>
     </div>
 </template>

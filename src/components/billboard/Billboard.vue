@@ -7,8 +7,7 @@
                     <img :src="item.movie.cover">
                 </div>
                 <div class="col-md-6">
-                    <h3>{{ item.movie.name }}</h3>
-                    <p>{{ item.movie.synopsis }}</p>
+                    <h3 class="title">{{ item.movie.name }}</h3>
                     <span>
                         <button @click="reservar(item)" class="btn btn-primary">Reservar ticket</button>
                     </span>
@@ -19,12 +18,21 @@
 </template>
 
 <style>
+h3.title {
+    padding: 5px 0;
+}
 img {
     width: 100%;
 }
 .row {
     margin-left: 0px;
     margin-right: 0px;
+}
+.sinopsis {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 80ch;
 }
 </style>
 <script src="./Billboard.js"></script>
