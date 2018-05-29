@@ -36,7 +36,7 @@ export default {
             }).catch(error => {console.log(error)});
         },
         editCategory(item) {
-            this.$router.push('/panel/category/edit/' + item.id);
+            this.$router.push('/panel/categories/edit/' + item.id);
         },
         deleteCategory(item) {
             if (confirm("Estàs segur/a de esborrar aquesta categoria?"))
@@ -49,5 +49,8 @@ export default {
                 }
             }
         },
+        createCategory() {
+            this.$router.push('/panel/categories/create');
+        }
     }
 }

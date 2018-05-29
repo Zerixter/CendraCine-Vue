@@ -25,6 +25,8 @@ export default {
             billboard: {},
             movies: [],
             chosen_movies: [],
+            movie: null,
+            movies_select: [],
         }
     },
     mounted() {
@@ -54,7 +56,10 @@ export default {
             axios.get(url)
             .then((response) => { 
                 console.log(response)
-                this.chosen_movies = JSON.parse(JSON.stringify(response.data));
+                for (var i = 0; i < response.data.length; i++) {
+                    this.chosen_movies.push(JSON.parse(JSON.stringify(response.data[i].movie)))
+                }
+                console.log(this.chosen_movies)
             }).catch(error => {console.log(error)});
         },
         getMovies() {
@@ -62,7 +67,26 @@ export default {
             axios.get(url)
             .then((response) => {
                 this.movies = JSON.parse(JSON.stringify(response.data));
+                for (var i = 0; i < this.movies.length; i++) {
+                    this.movies_select.push({
+                        label: this.movies[i].name,
+                        value: this.movies[i].id
+                    });
+                }
             }).catch(error => {console.log(error)});
+        },
+        addMovie() {
+            let id = this.movie.value;
+            let m = this.movies.filter(x => x.id == id)[0];
+            var cm = this.chosen_movies.filter(x => x.id == m.id)[0];
+            if (cm == undefined) this.chosen_movies.push(m);
+        },
+        removeMovie(item) {
+            var position = this.chosen_movies.indexOf(item);
+            if (position != -1)
+            {
+                this.chosen_movies.splice(position, 1);
+            }
         },
         submitForm() {
             var billboard = {

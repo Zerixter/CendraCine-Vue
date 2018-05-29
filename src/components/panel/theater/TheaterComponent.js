@@ -50,5 +50,8 @@ export default {
                 return;
             }
         },
+        createTheater() {
+            this.$router.push('/panel/theaters/create');
+        },
     }
 }

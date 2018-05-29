@@ -1,7 +1,9 @@
 <template>
-    <div class="content">
-        <h1>Formular per afegir una película</h1>
-        <div class="forumlari row">
+    <div class="content row">
+        <div class="title col-md-12">
+            <h1>Formular per afegir una película</h1>
+        </div>
+        <div class="formulari row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Nom</label>
@@ -31,15 +33,13 @@
                 <div class="form-group">
                     <label>Categories</label>
                     <div class="row">
-                        <div class="col-md-8">
-                            <select id="select-category" class="form-control">
-                                <option v-for="item in categories" :key="item.id">{{ item.name }}</option>
-                            </select>
+                        <div class="col-md-8 select-add">
+                            <v-select v-model="category" :options="categories_select"></v-select>
                         </div>
                         <div class="col-md-4">
-                            <button v-on:click="addCategory()" class="btn btn-primary">Afegir categoria</button>
+                            <button class="btn btn-primary add-button">Afegir categoria</button>
                         </div>
-                    </div>
+                    </div>  
                 </div>
                 <div class="form-group">
                     <ul>

@@ -28,6 +28,9 @@ export default {
         this.getBillboards();
     },
     methods: {
+        createBillboard() {
+            this.$router.push('/panel/billboards/create');
+        },
         getBillboards() {
             let url = urlService.BillboardURL;
             axios.get(url).then((response) => {

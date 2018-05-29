@@ -2,3 +2,15 @@ img {
     width: auto;
     max-height: 300px;
 }
+.row {
+    width: 100%;
+}
+.swiper-wrapper {
+    transform: translate3d(0px, 0px, 0px);
+}
+.swiper-slide {
+    width: 200px !important;
+}
+.col-md-12 {
+    padding: 0px;
+}

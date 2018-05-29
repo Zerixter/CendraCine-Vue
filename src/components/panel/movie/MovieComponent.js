@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import axios from 'axios'
+import fab from 'vue-fab'
 import URLS from '../../../services/URLS'
 import MovieService from '../../../services/MovieService'
 import AccountService from '../../../services/AccountService'
@@ -22,12 +23,25 @@ export default {
     data() {
         return {
             movies: [],
+            bgColor: '#778899',
+            position: 'bottom-right',
+            actions: [
+                {
+                    name: 'CreateMovie'
+                }
+            ],
         }
+    },
+    components: {
+        fab
     },
     mounted() {
         this.getMovies();
     },
     methods: {
+        createMovie() {
+            this.$router.push('/panel/movies/create');
+        },
         getMovies() {
             let url = 'http://localhost:5000/api/movie';
             axios.get(url).then((response) => {
@@ -49,6 +63,9 @@ export default {
                 }
                 return;
             }
+        },
+        createMovie() {
+            this.$router.push('/panel/movies/create');
         }
     }
 }

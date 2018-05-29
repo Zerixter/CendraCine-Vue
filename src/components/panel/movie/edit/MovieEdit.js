@@ -25,6 +25,8 @@ export default {
             categories: [],
             chosen_categories: [],
             movie: {},
+            category: null,
+            categories_select: [],
         }
     },
     mounted() {

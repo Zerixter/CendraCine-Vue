@@ -1,6 +1,9 @@
 <template>
-    <div class="content">
-         <div class="forumlari">
+    <div class="content row">
+        <div class="title col-md-12">
+            <h1>Formulari per editar una cartellera</h1>
+        </div>
+        <div class="formulari row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Nom</label>
@@ -15,32 +18,30 @@
                     <input v-model="billboard.endDate" type="date" class="form-control" placeholder="Data en la qual acaba la duració de la cartellera"/>
                 </div>     
                 <div class="form-group">
-                    <button v-on:click="submitForm()" class="btn btn-primary">Editar cartellera</button>
+                    <button v-on:click="submitForm()" class="btn btn-primary add-button">Editar cartellera</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Películes que estarán en la cartellera</label>
                     <div class="row">
-                        <div class="col-md-8">
-                            <select id="select-movie" class="form-control">
-                                <option v-for="item in movies" :key="item.id">{{ item.name }}</option>
-                            </select>
+                        <div class="col-md-8 select-add">
+                            <v-select v-model="movie" :options="movies_select"></v-select>
                         </div>
                         <div class="col-md-4">
-                            <button v-on:click="addMovie()" class="btn btn-primary">Afegir película</button>
+                            <button v-on:click="addMovie()" class="btn btn-primary add-button">Afegir película</button>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <ul>
+                    <ul class="no-style">
                         <li v-for="item in chosen_movies" :key="item.id">
-                            {{ item.movie.name }} <button v-on:click="removeMovie(item)" class="btn btn-warning">Eliminar</button>
+                            <button v-on:click="removeMovie(item)" class="btn btn-warning">Eliminar</button> {{ item.name }}
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>
+    </div>
     </div>
 </template>
 

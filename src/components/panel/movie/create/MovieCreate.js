@@ -28,6 +28,8 @@ export default {
             cover: "",
             synopsis: "",
             selected_file: null,
+            category: null,
+            categories_select: [],
         }
     },
     mounted() {
@@ -103,6 +105,6 @@ export default {
             };
             const movieService = new MovieService();
             movieService.createMovie(movie);
-        }
+        },
     }
 }

@@ -42,6 +42,12 @@ export default {
             var d = new Date(item);
             d.setHours(d.getHours() + 2);
             return d.toISOString();
+        },
+        editProjection(item) {
+            if (item.id != undefined) this.$router.push('/panel/projections/edit/' + item.id);
+        },
+        createProjection() {
+            this.$router.push('/panel/projections/create');
         }
     }
 }

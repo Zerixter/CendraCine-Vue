@@ -72,4 +72,39 @@ textarea.sinopsis {
 .link-nav {
     margin: 0 8px;
 }
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.btn--bottom.btn--absolute {
+    bottom: 20px;
+}
+.title {
+    padding: 10px 0;
+}
+.formulari {
+    text-align: left;
+    width: 100%;
+}
+.form-control {
+    width: 100%;
+}
+div.dropdown {
+    padding: 0px;
+}
+.add-button {
+    margin: 0px;
+}
+.select-add {
+    padding-left: 0px;
+}
+ul.no-style {
+    list-style-type: none;
+}
+.button-table {
+    margin: 0px;
+}
+.title {
+    text-align: center;
+}
 </style>

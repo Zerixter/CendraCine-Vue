@@ -1,6 +1,10 @@
 <template>
     <div class="content">
-        <h1>Esto es un panel to flama</h1>
+        <div>
+            <v-btn @click="createMovie" color="blue" fab dark absolute bottom right>
+                <v-icon>add</v-icon>
+            </v-btn>
+        </div>
     </div>
 </template>
 

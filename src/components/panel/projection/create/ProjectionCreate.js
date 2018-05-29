@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import axios from 'axios'
 import URLS from '../../../../services/URLS'
-import { Datetime } from 'vue-datetime';
+import { Datetime } from 'vue-datetime'
 import { Settings } from 'luxon'
 import AccountService from '../../../../services/AccountService'
 

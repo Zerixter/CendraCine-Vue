@@ -26,6 +26,8 @@ export default {
             endDate: "",
             movies: [],
             chosen_movies: [],
+            movie: null,
+            movies_select: []
         }
     },
     mounted() {
@@ -38,31 +40,17 @@ export default {
             .then((response) => {
                 console.log(response)
                 this.movies = JSON.parse(JSON.stringify(response.data));
+                for (var i = 0; i < this.movies.length; i++) {
+                    this.movies_select.push({
+                        label: this.movies[i].name,
+                        value: this.movies[i].id
+                    });
+                }
             }).catch(error => {console.log(error)});
         },
         addMovie() {
-            var select = document.getElementById('select-movie');
-            var value = select[select.selectedIndex].value;
-            var movie = this.movies.filter(function(obj) {
-                return obj.name == value;
-            });
-            if (movie.length == 0) {
-                alert("Error");
-                return;
-            }
-            var is_it_already_in_the_array = this.chosen_movies.filter(function(obj) {
-                return obj.name == value;
-            });
-            if (is_it_already_in_the_array.length > 0)
-            {
-                alert("Error");
-                return;
-            }
-            var Movie = {
-                id: movie[0].id,
-                name: movie[0].name
-            };
-            this.chosen_movies.push(Movie);
+            var movie = this.movies.filter(x => x.id == this.movie.value);
+            this.chosen_movies.push(movie[0]);
         },
         removeMovie(item) {
             var position = this.chosen_movies.indexOf(item);

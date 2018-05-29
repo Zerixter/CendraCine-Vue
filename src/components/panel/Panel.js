@@ -6,6 +6,10 @@ const urlService = new URLS();
 
 export default {
     name: 'Panel',
+    data(){
+        return {
+        }
+    },
     beforeCreate() {
         accountService.getRoleAdmin()
         .then(res => {
@@ -14,5 +18,10 @@ export default {
         }).catch(err => {
             this.$router.push('/login');
         });
+    },
+    methods:{
+        createMovie() {
+            this.$router.push('/panel');
+        }
     }
 }

@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             id: "",
-            cateogry: {},
+            category: {},
         }
     },
     mounted() {
@@ -35,13 +35,13 @@ export default {
             axios.get(url)
             .then((response) => {
                 console.log(response);
-                this.cateogry = JSON.parse(JSON.stringify(response.data));
+                this.category = JSON.parse(JSON.stringify(response.data));
             }).catch(error => {console.log(error)});
         },
         submitForm() {
             var category = {
-                Id: this.id,
-                Name: this.billboard.name
+                Id: this.category.id,
+                Name: this.category.name
             };
             categoryService.editCategory(category);
         }
