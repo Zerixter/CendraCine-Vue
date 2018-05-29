@@ -12,6 +12,11 @@ export default class CategoryService {
         let url = urlService.CategoryURL;
         return axios.get(url);
     }
+    getMovieCategories(id) {
+        accountService.createHeaders();
+        let url = urlService.CategoryURL + '/moviecategory/' + id;
+        return axios.get(url);
+    }
     addCategory(category) {
         accountService.createHeaders();
         let url = urlService.CategoryURL;

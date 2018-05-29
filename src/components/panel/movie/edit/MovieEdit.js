@@ -3,9 +3,11 @@ import axios from 'axios'
 import URLS from '../../../../services/URLS'
 import MovieService from '../../../../services/MovieService'
 import AccountService from '../../../../services/AccountService'
+import CategoryService from '../../../../services/CategoryService'
 
 const accountService = new AccountService();
 const movieService = new MovieService();
+const categoryService = new CategoryService();
 const urlService = new URLS();
 
 export default {
@@ -28,11 +30,13 @@ export default {
             category: null,
             categories_select: [],
             selected_file: null,
+            movie_categories: [],
         }
     },
     mounted() {
         this.getMovie();
         this.getCategories();
+        this.getMovieCategory();
     },
     methods: {
         getMovie() {
@@ -40,7 +44,6 @@ export default {
             movieService.getMovie(this.id)
             .then((response) => {
                 this.movie = JSON.parse(JSON.stringify(response.data))
-                if (this.movie.categories != undefined) this.chosen_categories = this.movie.categories;
             })
             .catch(error => {
                 this.$notify({
@@ -48,6 +51,16 @@ export default {
                     title: 'Error',
                     text: "S'ha produit un error al intentar obtenir la película"
                 });
+            });
+        },
+        getMovieCategory() {
+            categoryService.getMovieCategories(this.id)
+            .then(res => {
+                let array = JSON.parse(JSON.stringify(res.data));
+                for (var i = 0; i < array.length; i++) {
+                    this.chosen_categories.push(array[i].category);
+                }
+            }).catch(err => {
             });
         },
         getCategories() {
