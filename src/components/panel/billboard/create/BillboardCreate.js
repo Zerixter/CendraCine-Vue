@@ -49,8 +49,10 @@ export default {
             }).catch(error => {console.log(error)});
         },
         addMovie() {
-            var movie = this.movies.filter(x => x.id == this.movie.value);
-            this.chosen_movies.push(movie[0]);
+            let id = this.movie.value;
+            let m = this.movies.filter(x => x.id == id)[0];
+            var cm = this.chosen_movies.filter(x => x.id == m.id)[0];
+            if (cm == undefined) this.chosen_movies.push(m);
         },
         removeMovie(item) {
             var position = this.chosen_movies.indexOf(item);

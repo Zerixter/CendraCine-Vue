@@ -19,14 +19,14 @@
                 </div>
                 <div class="form-group">
                     <label>Portada</label>
-                    <input v-model="movie.cover" class="form-control" placeholder="Afageix una portada per la película"/>
+                    <input type="file" @change="onFileChanged" class="form-control" placeholder="Afageix una portada per la película"/>
                 </div>
                 <div class="form-group">
                     <label>Sinopsis</label>
                     <textarea v-model="movie.synopsis" class="form-control sinopsis"></textarea>
                 </div>      
                 <div class="form-group">
-                    <button v-on:click="submitForm()" class="btn btn-primary">Guardar canvis</button>
+                    <button v-on:click="submitForm()" class="btn btn-primary add-button">Modificar película</button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -37,19 +37,23 @@
                             <v-select v-model="category" :options="categories_select"></v-select>
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-primary add-button">Afegir categoria</button>
+                            <button @click="addCategory" class="btn btn-primary add-button">Afegir categoria</button>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <ul>
+                    <ul class="no-style">
                         <li v-for="item in chosen_categories" :key="item.id">
-                            {{ item.name }} <button v-on:click="removeCategory(item)" class="btn btn-warning">Eliminar</button>
+                            <button v-on:click="removeCategory(item)" class="btn btn-warning">Eliminar</button> {{ item.name }}
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <notifications classes="vue-notification error" group="error_get_movie"/>
+        <notifications classes="vue-notification error" group="error_upload_image"/>
+        <notifications classes="vue-notification error" group="error_get_categories"/>
+        <notifications classes="vue-notification error" group="error_edit_movie"/>
     </div>
 </template>
 

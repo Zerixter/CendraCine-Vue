@@ -1,10 +1,13 @@
 import $ from 'jquery'
 import axios from 'axios'
 import MovieService from '../../../../services/MovieService'
+import CategoryService from '../../../../services/CategoryService'
 import URLS from '../../../../services/URLS'
 import AccountService from '../../../../services/AccountService'
 
 const accountService = new AccountService();
+const categoryService = new CategoryService();
+const movieService = new MovieService();
 const urlService = new URLS();
 
 export default {
@@ -37,34 +40,28 @@ export default {
     },
     methods: {
         getCategories() {
-            console.log("token")
-            console.log(localStorage.token)
-            let url = urlService.CategoryURL;
-            axios.get(url).then((response) => {
-                console.log(response)
+            categoryService.getCategories()
+            .then((response) => {
                 this.categories = JSON.parse(JSON.stringify(response.data));
-            }).catch(error => { console.log(error); });
-            console.log(this.categories)
+                for (var i = 0; i < this.categories.length; i++) {
+                    this.categories_select.push({
+                        label: this.categories[i].name,
+                        value: this.categories[i].id
+                    });
+                }
+            }).catch(error => {
+                this.$notify({
+                    group: 'error_get_category',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar obtenir les categories"
+                });
+            });
         },
         addCategory() {
-            var select = document.getElementById('select-category');
-            var value = select[select.selectedIndex].value;
-            var category = this.categories.filter(function(obj) {
-                return obj.name == value;
-            });
-            if (category.length == 0) {
-                alert("Error");
-                return;
-            }
-            var is_it_already_in_the_array = this.chosen_categories.filter(function(obj) {
-                return obj.name == value;
-            });
-            if (is_it_already_in_the_array.length > 0)
-            {
-                alert("Error");
-                return;
-            }
-            this.chosen_categories.push(JSON.parse(JSON.stringify(category[0])));
+            let id = this.category.value;
+            let c = this.categories.filter(x => x.id == id)[0];
+            var cc = this.chosen_categories.filter(x => x.id == c.id)[0];
+            if (cc == undefined) this.chosen_categories.push(c);
         },
         removeCategory(category) {
             var position = this.chosen_categories.indexOf(category);
@@ -75,24 +72,22 @@ export default {
         },
         onFileChanged(event) {
             let file = event.target.files[0];
-
             this.selected_file = new FormData();
             this.selected_file.append("file", file, file.name);
         },
         submitForm() {
-            let url = 'http://localhost:5000/api/upload';
-            axios.post(url, this.selected_file, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then(resp => {
-                console.log(resp)
-                this.createMovie(resp.data);
-            }).catch(error => {
-                console.log("error critico")
-                console.log(error)
-            });
+            if (this.name.length > 0 ) {
+                movieService.uploadImage(this.selected_file)
+                .then(resp => {
+                    this.createMovie(resp.data);
+                }).catch(error => {
+                    this.$notify({
+                        group: 'error_upload_image',
+                        title: 'Error',
+                        text: "S'ha produit un error al intentar pujar l'imatge"
+                    });
+                });
+            }
         },
         createMovie(cover){
             var movie = {
@@ -103,8 +98,17 @@ export default {
                 Synopsis: this.synopsis,
                 Categories: this.chosen_categories
             };
-            const movieService = new MovieService();
-            movieService.createMovie(movie);
+            movieService.createMovie(movie)
+            .then(res => {
+                this.$router.push('/panel/movies');
+            })
+            .catch(err => {
+                this.$notify({
+                    group: 'error_create_movie',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar pujar l'imatge"
+                });
+            });
         },
     }
 }

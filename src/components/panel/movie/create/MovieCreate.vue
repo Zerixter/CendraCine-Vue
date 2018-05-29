@@ -37,12 +37,12 @@
                             <v-select v-model="category" :options="categories_select"></v-select>
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-primary add-button">Afegir categoria</button>
+                            <button @click="addCategory" class="btn btn-primary add-button">Afegir categoria</button>
                         </div>
                     </div>  
                 </div>
                 <div class="form-group">
-                    <ul>
+                    <ul class="no-style">
                         <li v-for="item in chosen_categories" :key="item.id">
                             <button v-on:click="removeCategory(item)" class="btn btn-warning">Eliminar</button> {{ item.name }}
                         </li>
@@ -50,6 +50,9 @@
                 </div>
             </div>
         </div>
+        <notifications classes="vue-notification error" group="error_get_category"/>
+        <notifications classes="vue-notification error" group="error_upload_image"/>
+        <notifications classes="vue-notification error" group="error_create_movie"/>
     </div>
 </template>
 

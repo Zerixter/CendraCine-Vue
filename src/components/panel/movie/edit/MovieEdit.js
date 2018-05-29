@@ -27,6 +27,7 @@ export default {
             movie: {},
             category: null,
             categories_select: [],
+            selected_file: null,
         }
     },
     mounted() {
@@ -36,41 +37,42 @@ export default {
     methods: {
         getMovie() {
             this.id = this.$route.params.id;
-            // Per alguna rao si no faig el get en el mateix component en comptes de en el service no funciona bé (cosas de javascript)
-            let url = urlService.MovieURL + '/' + this.id;
-            axios.get(url)
+            movieService.getMovie(this.id)
             .then((response) => {
-                console.log(response);
                 this.movie = JSON.parse(JSON.stringify(response.data))
-                this.chosen_categories = this.movie.categories;
+                if (this.movie.categories != undefined) this.chosen_categories = this.movie.categories;
             })
-            .catch(error => { console.log(error); });
+            .catch(error => {
+                this.$notify({
+                    group: 'error_get_movie',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar obtenir la película"
+                });
+            });
         },
         getCategories() {
             let url = urlService.CategoryURL;
             axios.get(url).then((response) => {
                 this.categories = JSON.parse(JSON.stringify(response.data));
-            }).catch(error => { console.log(error); });
+                for (var i = 0; i < this.categories.length; i++) {
+                    this.categories_select.push({
+                        label: this.categories[i].name,
+                        value: this.categories[i].id
+                    });
+                }
+            }).catch(error => {
+                this.$notify({
+                    group: 'error_get_categories',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar obtenir les categories"
+                });
+            });
         },
         addCategory() {
-            var select = document.getElementById('select-category');
-            var value = select[select.selectedIndex].value;
-            var category = this.categories.filter(function(obj) {
-                return obj.name == value;
-            });
-            if (category.length == 0) {
-                alert("Error");
-                return;
-            }
-            var is_it_already_in_the_array = this.chosen_categories.filter(function(obj) {
-                return obj.name == value;
-            });
-            if (is_it_already_in_the_array.length > 0)
-            {
-                alert("Error");
-                return;
-            }
-            this.chosen_categories.push(JSON.parse(JSON.stringify(category[0])));
+            let id = this.category.value;
+            let c = this.categories.filter(x => x.id == id)[0];
+            var cc = this.chosen_categories.filter(x => x.id == c.id)[0];
+            if (cc == undefined) this.chosen_categories.push(c);
         },
         removeCategory(category) {
             var position = this.chosen_categories.indexOf(category);
@@ -79,17 +81,51 @@ export default {
                 this.chosen_categories.splice(position, 1);
             }
         },
+        onFileChanged(event) {
+            let file = event.target.files[0];
+            this.selected_file = new FormData();
+            this.selected_file.append("file", file, file.name);
+        },
         submitForm() {
+            if (this.movie.name.length > 0 ) {
+                if (this.selected_file != null)
+                {
+                    movieService.uploadImage(this.selected_file)
+                    .then(resp => {
+                        console.log(resp);
+                        this.createMovie(resp.data);
+                    }).catch(error => {
+                        this.$notify({
+                            group: 'error_upload_image',
+                            title: 'Error',
+                            text: "S'ha produit un error al intentar pujar l'imatge"
+                        });
+                    });
+                } else this.createMovie(null);
+            }
+        },
+        createMovie(cover) {
+            if (cover == null) cover = this.movie.cover;
             var movie = {
                 Id: this.id,
                 Name: this.movie.name,
                 Synopsis: this.movie.synopsis,
                 Trailer: this.movie.trailer,
                 RecommendedAge: this.movie.recommendedAge,
-                Cover: this.movie.cover,
+                Cover: cover,
                 Categories: this.chosen_categories
             };
-            movieService.editMovie(movie);
+            movieService.editMovie(movie)
+            .then(res => {
+                this.$router.push('/panel/movies');
+            })
+            .catch(err => {
+                this.$notify({
+                    group: 'error_edit_movie',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar"
+                });
+            });
         }
     }
 }

@@ -2,6 +2,7 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
+                <h1>Iniciar Sessió</h1>
                 <div class="form-group">
                     <label>Correu elèctronic</label>
                     <input v-model="email" class="form-control" placeholder="Introdueix el correu d'usuari"/>

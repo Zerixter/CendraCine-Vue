@@ -1,6 +1,4 @@
 import $ from 'jquery'
-import axios from 'axios'
-import fab from 'vue-fab'
 import URLS from '../../../services/URLS'
 import MovieService from '../../../services/MovieService'
 import AccountService from '../../../services/AccountService'
@@ -23,17 +21,7 @@ export default {
     data() {
         return {
             movies: [],
-            bgColor: '#778899',
-            position: 'bottom-right',
-            actions: [
-                {
-                    name: 'CreateMovie'
-                }
-            ],
         }
-    },
-    components: {
-        fab
     },
     mounted() {
         this.getMovies();
@@ -43,11 +31,15 @@ export default {
             this.$router.push('/panel/movies/create');
         },
         getMovies() {
-            let url = 'http://localhost:5000/api/movie';
-            axios.get(url).then((response) => {
+            movieService.getMovies().then((response) => {
                 this.movies = JSON.parse(JSON.stringify(response.data));
-                console.log(response);
-            }).catch(error => { console.log(error); });
+            }).catch(error => {
+                this.$notify({
+                    group: 'error_get',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar obtenir les pelicules"
+                });
+            });
         },
         editMovie(item) {
             this.$router.push('/panel/movies/edit/' + item.id);
@@ -55,13 +47,17 @@ export default {
         deleteMovie(item) {
             if (confirm("Estás segur/a de esborrar aquesta película?"))
             {
-                movieService.deleteMovie(item.id);
-                var position = this.movies.indexOf(item);
-                if (position != -1)
-                {
-                    this.movies.splice(position, 1);
-                }
-                return;
+                movieService.deleteMovie(item.id)
+                .then((response) => {
+                    var position = this.movies.indexOf(item);
+                    if (position != -1) this.movies.splice(position, 1);
+                }).catch(error => {         
+                    this.$notify({
+                        group: 'error_delete',
+                        title: 'Error',
+                        text: "S'ha produit un error al intentar esborrar aquesta película"
+                    });
+                });;
             }
         },
         createMovie() {

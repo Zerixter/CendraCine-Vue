@@ -17,4 +17,6 @@ export default class URLS {
     ProjectionURL = this.baseURL + 'projection';
     // RESERVATION
     ReservationURL = this.baseURL + 'reservation';
+    // UPLOAD
+    UploadImageURL = this.baseURL + 'upload';
 }
