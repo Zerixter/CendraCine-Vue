@@ -12,7 +12,7 @@ img {
     width: 200px !important;
 }
 .best-rating {
-    background-color: #cacaca;
+    background-color: #f1f1f1;
 }
 .movies-content,
 .carousel-swiper {
@@ -20,4 +20,25 @@ img {
 }
 h3.movies-rating {
     padding: 15px 0;
+    text-align: center;
+}
+.movie {
+    padding: 20px 40px;
+}
+.rating span i {
+    width: 20%;
+    font-size: 27px;
+}
+span.movie-rating {
+    font-size: 23px;
+}
+div.rating {
+    padding: 15px 0;
+    text-align: left;
+}
+.ticket {
+    text-align: left;
+}
+.title {
+    text-align: left;
 }

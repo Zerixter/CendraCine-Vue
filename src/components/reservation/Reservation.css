@@ -9,3 +9,13 @@ img.cover {
 .reserva {
     padding: 20px 0;
 }
+.dates-title {
+    text-align: left;
+}
+div.select {
+    margin: 20px 0;
+}
+.sinopsis-title {
+    text-align: left;
+    padding: 5px 0;
+}

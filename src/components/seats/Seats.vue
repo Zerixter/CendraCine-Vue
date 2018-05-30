@@ -1,9 +1,9 @@
 <template>
-    <div class="content">
-        <div>
-            <h1>Tria un seient</h1>
+    <div class="content row">
+        <div claas="col-md-12 div-title">
+            <h1 class="title">Tria un seient</h1>
         </div>
-        <div class="row">
+        <div class="col-md-12 row">
             <div class="col-md-9 table-responsive">
                 <table class="table">
                     <tr v-for="(row, index) in rows" :key="`row-${index}`">
@@ -60,5 +60,14 @@
 }
 .butaca:hover {
     cursor: pointer;
+}
+.div-title {
+    width: 100%;
+}
+.title {
+    text-align: center;
+}
+.col-md-12 {
+    padding: 0px;
 }
 </style>

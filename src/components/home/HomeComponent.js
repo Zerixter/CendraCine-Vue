@@ -2,6 +2,7 @@ import $ from 'jquery'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import axios from 'axios'
 import URLS from '../../services/URLS'
+import FooterComponent from '../footer/FooterComponent.vue'
 
 const urlService = new URLS();
 
@@ -9,7 +10,8 @@ export default {
     name : 'HomeComponent',
     components: {
         swiper,
-        swiperSlide
+        swiperSlide,
+        'footer-component': FooterComponent
     },
     mounted() {
         this.getMovies();
@@ -38,10 +40,26 @@ export default {
             }).catch(error => { console.log(error); });
         },
         getBestRating() {
-            let array = this.bbmr.sort();
+            let array = this.bbmr;
+            array.sort(function(a, b){
+                return parseFloat(b.movie.rating) - parseFloat(a.movie.rating);
+            })
             for (var i = 0; i < 3; i++) {
                 this.movies_best_rating.push(array[i].movie);
             }
+            this.getRecommendedMovies();
         },
+        getRecommendedMovies() {
+            let array = this.bbmr;
+            array.sort(function(a, b) {
+                return a.movie.name > b.movie.name
+            });
+            for (var i = 0; i < 3; i++) {
+                this.movies_random.push(array[i].movie);
+            }
+        },
+        reservar(item) {
+            this.$router.push('/reserva/' + item.id);
+        }
     },
 }
