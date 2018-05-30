@@ -11,6 +11,13 @@ img {
 .swiper-slide {
     width: 200px !important;
 }
-.col-md-12 {
-    padding: 0px;
+.best-rating {
+    background-color: #cacaca;
+}
+.movies-content,
+.carousel-swiper {
+    padding: 0px !important;
+}
+h3.movies-rating {
+    padding: 15px 0;
 }

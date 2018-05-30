@@ -78,6 +78,7 @@ textarea.sinopsis {
 }
 .btn--bottom.btn--absolute {
     bottom: 20px;
+    position: fixed;
 }
 .title {
     padding: 10px 0;
@@ -105,6 +106,10 @@ ul.no-style {
     margin: 0px;
 }
 .title {
+    text-align: center;
+    padding: 20px 0;
+}
+.title h1 {
     text-align: center;
 }
 </style>

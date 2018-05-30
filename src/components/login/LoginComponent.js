@@ -21,7 +21,7 @@ export default {
                 localStorage.clear();
                 console.log(response.data)
                 localStorage.setItem('token', response.data.token);
-                if (response.data.role == "Admin") this.$router.push('/panel');
+                if (response.data.role == "Admin") this.$router.push('/');
                 else this.$router.push('/');
             }).catch(error => { console.log(error); });;
         }

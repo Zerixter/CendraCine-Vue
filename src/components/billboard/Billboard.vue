@@ -1,15 +1,23 @@
 <template>
-    <div class="content">
-        <h1>Cartellera</h1>
-        <div class="row">
-            <div class="col-md-6 row" v-for="item in bbmr" :key="item.id">
-                <div class="col-md-6">
-                    <img :src="item.movie.cover">
-                </div>
-                <div class="col-md-6">
-                    <h3 class="title">{{ item.movie.name }}</h3>
+    <div class="content row">
+        <div class="col-md-12 title">
+            <h1>Cartellera</h1>
+        </div>
+        <div class="col-md-6 row movie" v-for="item in bbmr" :key="item.id">
+            <div class="col-md-6">
+                <img :src="item.movie.cover">
+            </div>
+            <div class="col-md-6">
+                <h3 class="title">{{ item.movie.name }}</h3>
+                <div class="rating">
                     <span>
-                        <button @click="reservar(item)" class="btn btn-primary">Reservar ticket</button>
+                        <i class="material-icons">star_rate</i> 
+                        <span class="movie-rating">{{ item.movie.rating }}</span>
+                    </span>
+                </div>
+                <div class="ticket">
+                    <span>
+                        <button @click="reservar(item)" class="btn btn-primary add-button">Reservar ticket</button>
                     </span>
                 </div>
             </div>
@@ -33,6 +41,19 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 80ch;
+}
+.movie {
+    padding: 20px 40px;
+}
+.rating span i {
+    width: 20%;
+    font-size: 27px;
+}
+span.movie-rating {
+    font-size: 23px;
+}
+div.rating {
+    padding: 15px 0;
 }
 </style>
 <script src="./Billboard.js"></script>

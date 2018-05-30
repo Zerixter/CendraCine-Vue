@@ -18,6 +18,10 @@ export default class BillboardService {
             }).catch(error => {console.log(error)});
         }
     }
+    getActualBillboard() {
+        let url = urlService.BillboardURL + '/actual';
+        return axios.get(url);
+    }
     editBillboard(billboard) {
         if (localStorage.token != undefined)
         {

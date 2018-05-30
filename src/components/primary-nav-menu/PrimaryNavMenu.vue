@@ -14,12 +14,15 @@
                 <router-link class="link-nav" to="/cartellera">Cartellera</router-link>
             </li>
         </ul>
-        <ul class="navbar-nav my-2 my-lg-0" v-if="isLogged">
-            <li class="nav-item active">
-                <router-link class="link-nav" to="/reserves">Reserves</router-link>
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item active" v-if="!isLogged">
+                <router-link class="link-nav" to="/login" v-if="isLogged">Iniciar sessió</router-link>
             </li>
             <li class="nav-item active">
-                <span @click="closeSession" class="link-nav close-session">Tancar sessió</span>
+                <router-link class="link-nav" to="/reserves" v-if="isLogged">Reserves</router-link>
+            </li>
+            <li class="nav-item active">
+                <span @click="closeSession" class="link-nav close-session" v-if="isLogged">Tancar sessió</span>
             </li>
         </ul>
         </div>
@@ -31,5 +34,6 @@
 <style>
 .close-session {
     cursor: pointer;
+    color: #007bff;
 }
 </style>
