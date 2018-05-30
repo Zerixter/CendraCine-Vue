@@ -42,6 +42,10 @@
                 </div>
             </div>
     </div>
+    <notifications classes="vue-notification error" group="error_edit"/>
+    <notifications classes="vue-notification error" group="error_get_billboard"/>
+    <notifications classes="vue-notification error" group="error_get_chosen_movies"/>
+    <notifications classes="vue-notification error" group="error_get_movies"/>
     </div>
 </template>
 

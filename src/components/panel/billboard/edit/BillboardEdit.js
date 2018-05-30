@@ -3,10 +3,12 @@ import axios from 'axios'
 import URLS from '../../../../services/URLS'
 import BillboardService from '../../../../services/BillboardService'
 import AccountService from '../../../../services/AccountService'
+import MovieService from '../../../../services/MovieService'
 
 const accountService = new AccountService();
 const urlService = new URLS();
 const billboardService = new BillboardService();
+const movieService = new MovieService();
 
 export default {
     name: 'BillboardEdit',
@@ -37,10 +39,8 @@ export default {
     methods: {
         getBillboard() {
             this.id = this.$route.params.id;
-            let url = urlService.BillboardURL + '/' + this.id;
-            axios.get(url)
+            billboardService.getBillboard(this.id)
             .then((response) => {
-                //console.log(response);
                 this.billboard = JSON.parse(JSON.stringify(response.data));
                 var bd = new Date(this.billboard.beginDate);
                 bd.setDate(bd.getDate() + 1);
@@ -49,22 +49,31 @@ export default {
                 this.billboard.beginDate = bd.toISOString().split('T')[0];
                 this.billboard.endDate = ed.toISOString().split('T')[0];
             })
-            .catch(error => { console.log(error); });
+            .catch(error => {
+                this.$notify({
+                    group: 'error_get_billboard',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar obtenir la cartellera"
+                })
+            });
         },
         getChosenMovies() {
-            let url = urlService.BMRURL + '/billboard/' + this.id;
-            axios.get(url)
-            .then((response) => { 
+            billboardService.getMoviesOnBillboard(this.id)
+            .then((response) => {
                 console.log(response)
                 for (var i = 0; i < response.data.length; i++) {
                     this.chosen_movies.push(JSON.parse(JSON.stringify(response.data[i].movie)))
                 }
-                console.log(this.chosen_movies)
-            }).catch(error => {console.log(error)});
+            }).catch(error => {
+                this.$notify({
+                    group: 'error_get_chosen_movies',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar obtenir les películes de la cartellera"
+                });
+            });
         },
         getMovies() {
-            let url = urlService.MovieURL;
-            axios.get(url)
+            movieService.getMovies()
             .then((response) => {
                 this.movies = JSON.parse(JSON.stringify(response.data));
                 for (var i = 0; i < this.movies.length; i++) {
@@ -73,7 +82,13 @@ export default {
                         value: this.movies[i].id
                     });
                 }
-            }).catch(error => {console.log(error)});
+            }).catch(error => {
+                this.$notify({
+                    group: 'error_get_movies',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar obtenir les películes"
+                })
+            });
         },
         addMovie() {
             let id = this.movie.value;
@@ -93,9 +108,20 @@ export default {
                 Id: this.id,
                 Name: this.billboard.name,
                 BeginDate: this.billboard.beginDate,
-                EndDate: this.billboard.endDate
+                EndDate: this.billboard.endDate,
+                Movies: this.chosen_movies
             };
-            billboardService.editBillboard(billboard);
+            billboardService.editBillboard(billboard)
+            .then(res => {
+                this.$router.push('/panel/billboards')
+            })
+            .catch(err => {
+                this.$notify({
+                    group: 'error_edit',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar editar la cartellera"
+                })
+            });
         },
     }
 }

@@ -7,6 +7,11 @@ const urlService = new URLS();
 const accountService = new AccountService();
 
 export default class CategoryService {
+    getCategory(id) {
+        accountService.createHeaders();
+        let url = urlService.CategoryURL + '/' + id;
+        return axios.get(url);
+    }
     getCategories() {
         accountService.createHeaders();
         let url = urlService.CategoryURL;
@@ -20,18 +25,12 @@ export default class CategoryService {
     addCategory(category) {
         accountService.createHeaders();
         let url = urlService.CategoryURL;
-        axios.post(url, category)
-        .then((response) => {
-            console.log(response);
-        }).catch(error => {console.log(error)});
+        return axios.post(url, category);
     }
     editCategory(category) {
         accountService.createHeaders();
         let url = urlService.CategoryURL;
-        axios.put(url, category)
-        .then((response) => {
-            console.log(response);
-        }).catch(error => {console.log(error)});
+        return axios.put(url, category);
     }
     deleteCategory(id) {
         accountService.createHeaders();

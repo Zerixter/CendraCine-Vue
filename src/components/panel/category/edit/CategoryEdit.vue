@@ -14,6 +14,8 @@
                 </div>
             </div>
         </div>
+        <notifications classes="vue-notification error" group="error_get_category"/>
+        <notifications classes="vue-notification error" group="error_edit"/>
     </div>
 </template>
 

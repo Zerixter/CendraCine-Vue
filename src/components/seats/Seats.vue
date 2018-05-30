@@ -32,12 +32,9 @@
                         <hr>
                         <p>Preu del ticket: {{ price }} €</p>
                         <hr>
-                        <PayPal
-                        v-on:payment-authorized="paymentAuthorized"
-                        v-on:payment-completed="paymentCompleted"
-                        v-on:payment-cancelled="paymentCancelled"
-                        :amount="price"
-                        currency="EUR" 
+                        <PayPal 
+                        amount="10.00"
+                        currency="USD"
                         :client="paypal"
                         env="sandbox">
                         </PayPal>
@@ -45,7 +42,6 @@
                 </div>
             </div>
         </div>
-        
     </div>
 </template>
 

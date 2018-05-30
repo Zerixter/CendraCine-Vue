@@ -7,31 +7,29 @@ const urlService = new URLS();
 const accountService = new AccountService();
 
 export default class BillboardService {
+    getBillboard(id) {
+        accountService.createHeaders();
+        let url = urlService.BillboardURL + '/' + id;
+        return axios.get(url);
+    }
+    getMoviesOnBillboard(id) {
+        accountService.createHeaders();
+        let url = urlService.BMRURL + '/billboard/' + id;
+        return axios.get(url);
+    }
     createBillboard(billboard) {
-        if (localStorage.token != undefined)
-        {
-            accountService.createHeaders();
-            let url = urlService.BillboardURL;
-            axios.post(url, billboard)
-            .then((response) => {
-                console.log(response);
-            }).catch(error => {console.log(error)});
-        }
+        accountService.createHeaders();
+        let url = urlService.BillboardURL;
+        return axios.post(url, billboard);
     }
     getActualBillboard() {
         let url = urlService.BillboardURL + '/actual';
         return axios.get(url);
     }
     editBillboard(billboard) {
-        if (localStorage.token != undefined)
-        {
-            accountService.createHeaders();
-            let url = urlService.BillboardURL;
-            axios.put(url ,billboard)
-            .then((response) => {
-                console.log(response);
-            }).catch(error => {console.log(error)});
-        }
+        accountService.createHeaders();
+        let url = urlService.BillboardURL;
+        return axios.put(url ,billboard);
     }
     deleteBillboard(id) {
         if (localStorage.token != undefined)

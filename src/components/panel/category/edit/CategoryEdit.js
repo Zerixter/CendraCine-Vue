@@ -31,19 +31,33 @@ export default {
     methods: {
         getCategory() {
             this.id = this.$route.params.id;
-            let url = urlService.CategoryURL + '/' + this.id;
-            axios.get(url)
+            categoryService.getCategory(this.id)
             .then((response) => {
-                console.log(response);
                 this.category = JSON.parse(JSON.stringify(response.data));
-            }).catch(error => {console.log(error)});
+            }).catch(error => {
+                this.$notify({
+                    group: 'error_get_category',
+                    title: 'Title',
+                    text: "S'ha produit un error al intentar obtenir la categoria"
+                })
+            });
         },
         submitForm() {
             var category = {
                 Id: this.category.id,
                 Name: this.category.name
             };
-            categoryService.editCategory(category);
+            categoryService.editCategory(category)
+            .then(res => {
+                this.$router.push('/panel/categories');
+            })
+            .catch(err => {
+                this.$notify({
+                    group: 'error_edit',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar editar la categoria"
+                });
+            });
         }
     },
 }

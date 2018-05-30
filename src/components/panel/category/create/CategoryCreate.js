@@ -25,7 +25,17 @@ export default {
             var category = {
                 Name: this.name
             }
-            categoryService.addCategory(category);
+            categoryService.addCategory(category)
+            .then(res => {
+                this.$router.push('/panel/categories');
+            })
+            .catch(err => {
+                this.$notify({
+                    group: 'error_create',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar crear una categoria"
+                });
+            });
         }
     }
 }
