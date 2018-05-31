@@ -5,7 +5,7 @@ export default {
     data() {
         return {
             paypal: {
-                sandbox: 'AbevwZFFjgy3H1kmHm_qMgTKjk6yVGZbLe2rNKeLS077V1A61rDFie1xftrVMrxqJ5ymFwx73SoimRRm',
+                sandbox: 'AfzcCFT7kALQ5MLCrGLxJ9noXOVs1FT9cSGllIvSyWmbsLFKBRltffEC5AhjwGukpsfk_KZE-9JdzJoR',
                 production: '<insert production client id>'
             }
         }

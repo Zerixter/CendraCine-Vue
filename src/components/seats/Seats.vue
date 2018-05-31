@@ -1,9 +1,9 @@
 <template>
     <div class="content row">
-        <div claas="col-md-12 div-title">
-            <h1 class="title">Tria un seient</h1>
-        </div>
         <div class="col-md-12 row">
+            <div class="col-md-12">
+                <h1 class="title-seat">Tria un seient</h1>
+            </div>
             <div class="col-md-9 table-responsive">
                 <table class="table">
                     <tr v-for="(row, index) in rows" :key="`row-${index}`">
@@ -33,8 +33,11 @@
                         <p>Preu del ticket: {{ price }} €</p>
                         <hr>
                         <PayPal 
-                        amount="10.00"
-                        currency="USD"
+                        v-on:payment-authorized="paymentAuthorized"
+                        v-on:payment-completed="paymentCompleted"
+                        v-on:payment-cancelled="paymentCancelled"
+                        amount="12.00"
+                        currency="EUR"
                         :client="paypal"
                         env="sandbox">
                         </PayPal>
@@ -57,13 +60,17 @@
 .butaca:hover {
     cursor: pointer;
 }
-.div-title {
-    width: 100%;
-}
 .title {
     text-align: center;
 }
+.title-seat {
+    padding: 15px 0;
+}
 .col-md-12 {
     padding: 0px;
+}
+div.col-md-12.div-title {
+    width: 100% !important;
+    text-align: center;
 }
 </style>

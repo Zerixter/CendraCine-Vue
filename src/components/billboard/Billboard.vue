@@ -26,6 +26,9 @@
 </template>
 
 <style>
+div.title h1 {
+    padding: 15px 0;
+}
 h3.title {
     padding: 5px 0;
 }

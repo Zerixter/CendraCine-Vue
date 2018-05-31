@@ -40,22 +40,24 @@ export default {
             }).catch(error => { console.log(error); });
         },
         getBestRating() {
-            let array = this.bbmr;
-            array.sort(function(a, b){
+            console.log(this.bbmr)
+            this.bbmr.sort(function(a, b){
                 return parseFloat(b.movie.rating) - parseFloat(a.movie.rating);
             })
-            for (var i = 0; i < 3; i++) {
-                this.movies_best_rating.push(array[i].movie);
+            if (this.bbmr.length >= 3) {
+
+                for (var i = 0; i < 3; i++) {
+                    this.movies_best_rating.push(this.bbmr[i].movie);
+                }
+                this.getRecommendedMovies();
             }
-            this.getRecommendedMovies();
         },
         getRecommendedMovies() {
-            let array = this.bbmr;
-            array.sort(function(a, b) {
+            this.bbmr.sort(function(a, b) {
                 return a.movie.name > b.movie.name
             });
             for (var i = 0; i < 3; i++) {
-                this.movies_random.push(array[i].movie);
+                this.movies_random.push(this.bbmr[i].movie);
             }
         },
         reservar(item) {

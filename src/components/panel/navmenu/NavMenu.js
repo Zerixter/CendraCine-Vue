@@ -19,6 +19,6 @@ export default {
             localStorage.clear();
             this.isLogged = false;
             this.$router.push('/');
-        }
+        },
     }
 }

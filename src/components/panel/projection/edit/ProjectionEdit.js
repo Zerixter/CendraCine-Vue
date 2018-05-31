@@ -76,6 +76,26 @@ export default {
                 }
             })
             .catch(err => console.log(err));
+        },
+        submitForm() {
+            let url = urlService.ProjectionURL;
+            var projection = {
+                Id: this.id,
+                ProjectionDate: this.projection.ProjectionDate,
+                Movie: this.movie,
+                Theater: this.theater
+            };
+
+            axios.put(url, projection)
+            .then(res => {
+                this.$router.push('/panel/projections');
+            }).catch(err => {
+                this.$notify({
+                    group: 'error_edit',
+                    title: 'Error',
+                    text: "S'ha produit un error al intentar editar la projecció"
+                });
+            });
         }
     }
 }

@@ -25,7 +25,10 @@
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
           <li class="nav-item active">
-                <span @click="closeSession" class="link-nav close-session" v-if="isLogged">Tancar sessió</span>
+            <router-link class="link-nav" to="/login">Iniciar sessió</router-link>
+          </li>
+          <li class="nav-item active">
+              <span @click="closeSession" class="link-nav close-session" v-if="isLogged">Tancar sessió</span>
           </li>
         </ul>
       </div>

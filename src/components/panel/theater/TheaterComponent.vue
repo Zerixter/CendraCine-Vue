@@ -8,13 +8,11 @@
                 <tr>
                     <th>Numero de sala</th>
                     <th>Capacitat</th>
-                    <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
                 <tr v-for="item in theaters" :key="item.id">
                     <td>{{ item.number }}</td>
                     <td>{{ item.capacity }}</td>
-                    <td><button v-on:click="editTheater(item)" class="btn btn-primary add-button">Editar</button></td>
                     <td><button v-on:click="deleteTheater(item)" class="btn btn-primary add-button">Esborrar</button></td>
                 </tr>
             </table>

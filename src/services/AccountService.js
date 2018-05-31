@@ -17,9 +17,7 @@ export default class AccountService {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.token;
     }
     getRoleAdmin() {
-        console.log("comprobando");
         let url = urlService.baseURL + 'account/role';
-        console.log(url)
         this.createHeaders();
         return axios.get(url);
     }

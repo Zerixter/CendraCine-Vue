@@ -6,6 +6,7 @@
         v-on:payment-cancelled="paymentCancelled"
         amount="12.00"
         currency="EUR" 
+        locale="es_ES"
         :client="paypal"
         env="sandbox">
         </PayPal>

@@ -40,5 +40,5 @@ div.rating {
     text-align: left;
 }
 .title {
-    text-align: left;
+    text-align: left !important;
 }

@@ -24,6 +24,7 @@
                 </div>
             </div>
         </div>
+        <notifications classes="vue-notification error" group="error_edit"/>
     </div>
 </template>
 

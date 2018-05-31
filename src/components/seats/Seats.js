@@ -18,7 +18,7 @@ export default {
             seat: null,
             price: 12 + '',
             paypal: {
-                sandbox: 'AbevwZFFjgy3H1kmHm_qMgTKjk6yVGZbLe2rNKeLS077V1A61rDFie1xftrVMrxqJ5ymFwx73SoimRRm',
+                sandbox: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
                 production: '<insert production client id>'
             }
         }
@@ -83,6 +83,7 @@ export default {
         paymentAuthorized: function (data) {
         },
         paymentCompleted: function (data) {
+            console.log(data);
             if (data.state == "approved")
             {
                 var reserva = {
@@ -101,7 +102,7 @@ export default {
                 let url = urlService.ReservationURL; 
                 axios.post(url, reserva)
                 .then(res => {
-                    console.log(res);
+                    this.$router.push('/reserves');
                 }).catch(err => console.log(err));
             }
         },

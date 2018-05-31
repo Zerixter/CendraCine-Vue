@@ -1,18 +1,12 @@
 <template>
   <div id="app" class="container-fluid">
-    <div v-if="isAdmin">
-        <nav-menu></nav-menu>
-    </div>
-    <div v-else>
-        <primary-menu></primary-menu>
-    </div>
+    <menu-nav></menu-nav>
     <router-view/>
   </div>
 </template>
 
 <script>
-import PrimaryNavMenu from '@/components/primary-nav-menu/PrimaryNavMenu.vue'
-import NavMenu from '@/components/panel/navmenu/NavMenu.vue'
+import MenuNav from '@/components/menu-nav/MenuNav.vue'
 import AccountService from '@/services/AccountService'
 
 const accountService = new AccountService();
@@ -20,22 +14,8 @@ const accountService = new AccountService();
 export default {
   name: 'App',
   components: { 
-    'nav-menu': NavMenu,
-    'primary-menu': PrimaryNavMenu
+    'menu-nav': MenuNav,
   },
-  data() {
-      return {
-          isAdmin: false,
-      }
-  },
-  mounted() {
-      accountService.getRoleAdmin()
-      .then(res => {
-          console.log(res)
-          if (res.data == 'Admin') this.isAdmin = true;
-      })
-      .catch(err => {});
-  }
 }
 </script>
 
@@ -107,7 +87,7 @@ ul.no-style {
 }
 .title {
     text-align: center;
-    padding: 20px 0;
+    padding: 5px 0;
 }
 .title h1 {
     text-align: center;
